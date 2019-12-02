@@ -70,6 +70,12 @@ class Cart {
     sessionStorage.setItem("cart", JSON.stringify(cart));
   }
 
+  static getTotalQuantitySessionStorage() {
+    return this.getProductsSessionStorage()
+      .map(product => parseInt(product.quantity, 10))
+      .reduce((a, b) => a + b, 0);
+  }
+
   //  ===================== Toasts Method =====================
 
   // Toast

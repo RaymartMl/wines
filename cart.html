@@ -81,10 +81,12 @@
                   >
                     <li><a href="index.html" class="nav-link text-left">Home</a></li>
                     <li><a href="about.html" class="nav-link text-left">About</a></li>
-                    <li class="active">
+                    <li>
                       <a href="shop.html" class="nav-link text-left">Shop</a>
                     </li>
-                    <li><a href="cart.html" class="nav-link text-left">Cart</a></li>
+                    <li class="active">
+                      <a href="cart.html" class="nav-link text-left">Cart</a>
+                    </li>
                     <li><a href="contact.html" class="nav-link text-left">Contact</a></li>
                   </ul>
                 </nav>
@@ -159,7 +161,7 @@
             </div>
             <div class="col-md-6 pl-5">
               <div class="row justify-content-end">
-                <div class="col-md-7">
+                <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-12 text-right border-bottom mb-5">
                       <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
@@ -170,15 +172,25 @@
                       <span class="text-black">Subtotal</span>
                     </div>
                     <div class="col-md-6 text-right">
-                      <strong class="text-black">$230.00</strong>
+                      <strong class="text-black subtotal">$0.00</strong>
+                    </div>
+                  </div>
+                  <div class="row mb-3 discountParent" style="display: none;">
+                    <div class="col-md-6">
+                      <span class="text-black"
+                        >Discount (<span id="discount"></span>% Off)</span
+                      >
+                    </div>
+                    <div class="col-md-6 text-right">
+                      <strong class="text-black discountValue">$0.00</strong>
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-md-6">
-                      <span class="text-black">Taxes</span>
+                      <span class="text-black">Taxes (VAT)</span>
                     </div>
                     <div class="col-md-6 text-right">
-                      <strong class="text-black">$230.00</strong>
+                      <strong class="text-black taxes">$0.00</strong>
                     </div>
                   </div>
                   <div class="row mb-5">
@@ -186,7 +198,7 @@
                       <span class="text-black">Total</span>
                     </div>
                     <div class="col-md-6 text-right">
-                      <strong class="text-black">$230.00</strong>
+                      <strong class="text-black grandTotal">$0.00</strong>
                     </div>
                   </div>
 
