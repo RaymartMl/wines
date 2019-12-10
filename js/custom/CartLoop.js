@@ -31,6 +31,9 @@ deleteAll.addEventListener("click", e => {
 // Stop reloading when Enter was pressed
 document.forms[0].addEventListener("submit", e => e.preventDefault());
 
+// Checkout
+document.querySelector(".checkout").addEventListener("click", checkOut);
+
 function getCartItems() {
   Cart.cart.forEach(product => {
     const tr = document.createElement("tr");
@@ -61,7 +64,7 @@ function getCartItems() {
         />
           </div>
         </td>
-        <td class="productTotal">$${(
+        <td class="productTotal">₱${(
           product.price.substring(1) * product.quantity
         ).toFixed(2)}</td>
         <td>
@@ -109,7 +112,7 @@ function updateProductTotal(e, quantity) {
   price = parseFloat(price.substring(1));
   const total = (price * quantity).toFixed(2);
 
-  e.target.parentElement.parentElement.nextElementSibling.textContent = `$${total}`;
+  e.target.parentElement.parentElement.nextElementSibling.textContent = `₱${total}`;
 }
 
 function updateSubTotal() {
@@ -122,7 +125,7 @@ function updateSubTotal() {
   });
 
   const subTotal = subTotalArr.reduce((a, b) => a + b, 0);
-  subTotalElement.textContent = `$${subTotal.toFixed(2)}`;
+  subTotalElement.textContent = `₱${subTotal.toFixed(2)}`;
 
   updateDiscount(subTotal);
 }
@@ -160,7 +163,7 @@ function updateDiscount(subTotal) {
     discountParent.style.display = "none";
   }
   discountPercent.textContent = percentOff;
-  discountValue.textContent = `$${discount}`;
+  discountValue.textContent = `₱${discount}`;
   updateTaxes(discount, subTotal);
 }
 
@@ -168,7 +171,7 @@ function updateTaxes(discount, subTotal) {
   const taxesElement = document.querySelector(".taxes");
   let total = subTotal - discount;
   const taxes = total * 0.12;
-  taxesElement.textContent = `$${taxes.toFixed(2)}`;
+  taxesElement.textContent = `₱${taxes.toFixed(2)}`;
 
   updateGrandTotal(total, taxes);
 }
@@ -177,5 +180,12 @@ function updateGrandTotal(total, taxes) {
   const grandTotalElement = document.querySelector(".grandTotal");
   const grandTotal = (total + taxes).toFixed(2);
 
-  grandTotalElement.textContent = `$${grandTotal}`;
+  grandTotalElement.textContent = `₱${grandTotal}`;
+}
+
+function checkOut(e) {
+  e.preventDefault();
+  const grandTotal = document.querySelector(".grandTotal").textContent;
+  sessionStorage.setItem("grandTotal", grandTotal);
+  window.location = "checkout.html";
 }

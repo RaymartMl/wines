@@ -15,6 +15,18 @@ class Cart {
     }
   }
 
+  static addProductSinglePage({ id, img, name, price, quantity }) {
+    if (this.checkProduct(id)) {
+      this.toast(name, "is Added to Cart", "#930077");
+      this.cart.push({ id, img, name, price, quantity });
+      this.saveCurrentCart();
+    } else {
+      // Make toast here
+      this.addQuantitySessionStorage(id, quantity);
+      this.toast(name, `add ${quantity} quantity`, "#930077");
+    }
+  }
+
   // check if product is already in cart by id
   static checkProduct(id) {
     const arr = this.cart.filter(product => product.id === id);
@@ -68,6 +80,16 @@ class Cart {
     });
 
     sessionStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  static addQuantitySessionStorage(id, quantity) {
+    const cart = this.getProductsSessionStorage();
+    cart.forEach((product, index) => {
+      if (id === product.id) {
+        product.quantity = parseInt(product.quantity, 10) + parseInt(quantity, 10);
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+      }
+    });
   }
 
   static getTotalQuantitySessionStorage() {
