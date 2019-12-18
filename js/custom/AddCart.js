@@ -10,7 +10,7 @@ function addToCart(e) {
   //  Get the parent Card
   const productCard = e.target.parentNode.parentNode;
 
-  //   Get the image name and price of the product
+  //   Get the info of the product
   const id = productCard.getAttribute("id");
   const img = productCard.querySelector("img").getAttribute("src");
   const name = productCard.querySelector(".heading").textContent;
