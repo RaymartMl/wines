@@ -701,12 +701,12 @@
                     
                   <div class="form-group row mb-5">
                     <div class="col-md-6">
-                      <label for="c_postal_zip" class="text-black">Postal / Zip <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip">
+                      <label for="c_d-ff_postal_zip" class="text-black">Postal / Zip <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="c_d-ff_postal_zip" name="c_d-ff_postal_zip">
                     </div>
                     <div class="col-md-6">
-                      <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Phone Number">
+                      <label for="c_diff_phone" class="text-black">Phone <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="c_diff_phone" name="c_diff_phone" placeholder="Phone Number">
                     </div>
                   </div>
         
@@ -849,7 +849,7 @@
 
   <script>
   $( document ).ready(function() {
-    const grandTotal = sessionStorage.getItem("grandTotal");
+    const grandTotal = localStorage.getItem("grandTotal");
     $("#order-total").text(`${grandTotal}`)
 });
 

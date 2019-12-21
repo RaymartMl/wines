@@ -24,7 +24,7 @@ table.addEventListener("change", e => {
 
 deleteAll.addEventListener("click", e => {
   table.innerHTML = "";
-  Cart.deleteAllSessionStorage();
+  Cart.deleteAllLocalStorage();
   updateSubTotal();
 });
 
@@ -83,7 +83,7 @@ function deleteCartItems(e) {
     .querySelector("h2")
     .textContent.trim();
 
-  Cart.deleteItemSessionStorage(id);
+  Cart.deleteItemLocalStorage(id);
   // Remove from the UI
   e.target.parentElement.parentElement.remove();
   Cart.toast(productName, "is deleted from the Cart");
@@ -100,7 +100,7 @@ function updateQuantity(e) {
   const quantity = e.target.value;
 
   // Update Session Storage
-  Cart.updateQuantitySessionStorage(id, quantity);
+  Cart.updateQuantityLocalStorage(id, quantity);
 
   // Update UI
   updateProductTotal(e, quantity);
@@ -131,7 +131,7 @@ function updateSubTotal() {
 }
 
 function updateDiscount(subTotal) {
-  const totalQuantity = Cart.getTotalQuantitySessionStorage();
+  const totalQuantity = Cart.getTotalQuantityLocalStorage();
   const discountValue = document.querySelector(".discountValue");
   const discountPercent = document.querySelector("#discount");
   const discountParent = document.querySelector(".discountParent");
@@ -186,6 +186,6 @@ function updateGrandTotal(total, taxes) {
 function checkOut(e) {
   e.preventDefault();
   const grandTotal = document.querySelector(".grandTotal").textContent;
-  sessionStorage.setItem("grandTotal", grandTotal);
+  localStorage.setItem("grandTotal", grandTotal);
   window.location = "checkout.html";
 }

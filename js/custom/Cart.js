@@ -2,7 +2,7 @@
 
 class Cart {
   // Products that added to cart
-  static cart = this.getProductsSessionStorage();
+  static cart = this.getProductsLocalStorage();
 
   static addProduct({ id, img, name, price, quantity = 1 }) {
     if (this.checkProduct(id)) {
@@ -22,7 +22,7 @@ class Cart {
       this.saveCurrentCart();
     } else {
       // Make toast here
-      this.addQuantitySessionStorage(id, quantity);
+      this.addQuantityLocalStorage(id, quantity);
       this.toast(name, `add ${quantity} quantity`, "#930077");
     }
   }
@@ -35,12 +35,12 @@ class Cart {
 
   //  ===================== Session storage Method =====================
   // Get products in session storage
-  static getProductsSessionStorage() {
+  static getProductsLocalStorage() {
     let items;
-    if (sessionStorage.getItem("cart") === null) {
+    if (localStorage.getItem("cart") === null) {
       items = [];
     } else {
-      items = JSON.parse(sessionStorage.getItem("cart"));
+      items = JSON.parse(localStorage.getItem("cart"));
     }
 
     return items;
@@ -48,52 +48,52 @@ class Cart {
 
   // Save the cart to Session Storage
   static saveCurrentCart() {
-    sessionStorage.setItem("cart", JSON.stringify(this.cart));
+    localStorage.setItem("cart", JSON.stringify(this.cart));
   }
 
-  static deleteItemSessionStorage(id) {
-    const cart = JSON.parse(sessionStorage.getItem("cart"));
+  static deleteItemLocalStorage(id) {
+    const cart = JSON.parse(localStorage.getItem("cart"));
     cart.forEach((product, index) => {
       if (id === product.id) {
         cart.splice(index, 1);
       }
     });
 
-    sessionStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
-  static deleteAllSessionStorage() {
-    if (sessionStorage.getItem("cart") === null) {
+  static deleteAllLocalStorage() {
+    if (localStorage.getItem("cart") === null) {
       this.toast("", "There's was no item in the Cart");
     } else {
-      sessionStorage.removeItem("cart");
+      localStorage.removeItem("cart");
       this.toast("", "All items on Cart are deleted");
     }
   }
 
-  static updateQuantitySessionStorage(id, quantity) {
-    const cart = JSON.parse(sessionStorage.getItem("cart"));
+  static updateQuantityLocalStorage(id, quantity) {
+    const cart = JSON.parse(localStorage.getItem("cart"));
     cart.forEach((product, index) => {
       if (id === product.id) {
         product.quantity = quantity;
       }
     });
 
-    sessionStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
-  static addQuantitySessionStorage(id, quantity) {
-    const cart = this.getProductsSessionStorage();
+  static addQuantityLocalStorage(id, quantity) {
+    const cart = this.getProductsLocalStorage();
     cart.forEach((product, index) => {
       if (id === product.id) {
         product.quantity = parseInt(product.quantity, 10) + parseInt(quantity, 10);
-        sessionStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("cart", JSON.stringify(cart));
       }
     });
   }
 
-  static getTotalQuantitySessionStorage() {
-    return this.getProductsSessionStorage()
+  static getTotalQuantityLocalStorage() {
+    return this.getProductsLocalStorage()
       .map(product => parseInt(product.quantity, 10))
       .reduce((a, b) => a + b, 0);
   }
