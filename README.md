@@ -1,3 +1,5 @@
+![The Shopping page](Screenshot_20210611_143011.png)
+
 Vanilla ecommerce website
 ======
 
